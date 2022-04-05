@@ -5,7 +5,7 @@ import tomlkit
 import logzero
 from logzero import logger
 
-from loglevel import loglevel
+from sync_version.loglevel import loglevel
 
 logzero.loglevel(loglevel(20))
 logger.debug("debug on")
