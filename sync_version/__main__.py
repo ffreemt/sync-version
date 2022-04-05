@@ -5,7 +5,8 @@ import logzero
 from logzero import logger
 import typer
 
-from sync_version import __version__, loglevel, sync_version
+from sync_version import __version__, sync_version
+from sync_version.loglevel import loglevel
 
 logzero.loglevel(loglevel())
 
