@@ -1,0 +1,9 @@
+{
+   "include": ["tests", "sync_version"],
+  "venvPath": ".venv",
+  "reportTypeshedErrors": false,
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+  "pythonVersion": "3.7",
+  "ignore": []
+}

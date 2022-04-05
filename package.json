@@ -1,0 +1,21 @@
+{
+    "dependencies": {
+        "npm-run-all": "^4.1.5"
+    },
+    "scripts": {
+        "start": "pyright && pytest && yarn style",
+        "test": "nodemon -w tests -w sync_version -x pytest tests",
+        "pyright": "nodemon -w sync_version -w .venv -e .py -x pyright sync_version tests",
+        "pytest": "nodemon -w tests -w sync_version -e .py -x pytest tests sync_version",
+        "style": "nodemon -w sync_version -w tests -x \"black tests sync_version && python -m flake8\"",
+        "docstyle": "nodemon -w sync_version -w tests -x pydocstyle --convention=google tests sync_version",
+        "pylint": "nodemon -w sync_version -e .py -x pylint sync_version",
+        "test:sync_version": "nodemon -w tests -e .py -x pytest -k sync_version tests",
+        "publish": "poetry build && poetry publish",
+        "black": "black tests sync_version",
+        "flake8": "flake8 tests sync_version",
+        "pflake8": "pflake8 tests sync_version",
+        "pep257": "pep257 tests sync_version",
+        "final": "run-s docstyle black flake8 pytest"
+    }
+}
