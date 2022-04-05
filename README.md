@@ -6,13 +6,26 @@ sync-version descr
 ## Install it
 
 ```shell
-pip install git+https://github.com/ffreemt/sync-version
+pip install sync-version
+
+# or pip install git+https://github.com/ffreemt/sync-version
 # poetry add git+https://github.com/ffreemt/sync-version
 # git clone https://github.com/ffreemt/sync-version && cd sync-version
 ```
 
 ## Use it
 ```python
-from sync_version import sync_version
+
+poetry version prerelease
+sync-version  # or python -m sync_version
+
+poetry version patch
+sync-version  # or python -m sync_version
+
+# dry-run
+sync-version --dry-run
+
+# debug and dry-run
+sync-version --debug --dry-run
 
 ```
