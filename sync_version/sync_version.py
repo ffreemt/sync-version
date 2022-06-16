@@ -31,7 +31,7 @@ def fetch_info():
         with open("pyproject.toml", encoding="utf8") as fha:
             jdata = tomlkit.load(fha)
     except Exception as exc:
-        logger.exceptioin(exc)
+        logger.exception(exc)
         raise
 
     try:
@@ -64,7 +64,7 @@ def sync_version(debug: bool = False, dry_run: bool = False):
     try:
         name, version = fetch_info()
     except Exception as exc:
-        logger.exceptioin(exc)
+        logger.exception(exc)
         raise
 
     init_py = Path(name.replace("-", "_")) / "__init__.py"
@@ -75,7 +75,7 @@ def sync_version(debug: bool = False, dry_run: bool = False):
     try:
         text = init_py.read_text(encoding="utf8")
     except Exception as exc:
-        logger.exceptioin(exc)
+        logger.exception(exc)
         raise
 
     logger.debug("version: %s", version)
@@ -85,7 +85,7 @@ def sync_version(debug: bool = False, dry_run: bool = False):
             r"""(__version__\s*=\s*["'])([\w_.-]+)""", rf"\g<1>{version}", text, count=1
         )
     except Exception as exc:
-        logger.exceptioin(exc)
+        logger.exception(exc)
         raise
 
     assert version in text1, "Something is not right...check it out."
@@ -97,7 +97,7 @@ def sync_version(debug: bool = False, dry_run: bool = False):
             try:
                 init_py.write_text(text1)
             except Exception as exc:
-                logger.exceptioin(exc)
+                logger.exception(exc)
                 raise
         else:
             logger.info("Dry-run: nothing changed")
