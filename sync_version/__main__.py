@@ -11,7 +11,7 @@ from sync_version.loglevel import loglevel
 logzero.loglevel(loglevel())
 
 app = typer.Typer(
-    name="pip-robot",
+    name="sync-version",
     add_completion=False,
     help="pip install robot",
 )
@@ -69,7 +69,11 @@ def main(
 
     logger.debug("debug")
 
-    sync_version(dry_run=dry_run, debug=debug)
+    try:
+        sync_version(dry_run=dry_run, debug=debug)
+    except Exception as exc:
+        logger.error(exc)
+        typer.Exit(1)
 
 
 if __name__ == "__main__":
