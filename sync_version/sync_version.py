@@ -1,8 +1,9 @@
 """Sync version in pyproject.toml with __version__."""
-from pathlib import Path
 import re
-import tomlkit
+from pathlib import Path
+
 import logzero
+import tomlkit
 from logzero import logger
 
 from sync_version.loglevel import loglevel
@@ -95,7 +96,7 @@ def sync_version(debug: bool = False, dry_run: bool = False):
         logger.info(" %s written to __init__.py.", version)
         if not dry_run:
             try:
-                init_py.write_text(text1)
+                init_py.write_text(text1, encoding="utf8")
             except Exception as exc:
                 logger.exception(exc)
                 raise

@@ -2,8 +2,8 @@
 from typing import Optional
 
 import logzero
-from logzero import logger
 import typer
+from logzero import logger
 
 from sync_version import __version__, sync_version
 from sync_version.loglevel import loglevel
