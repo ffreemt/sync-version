@@ -1,4 +1,5 @@
 """Sync version in pyproject.toml with __version__."""
+import json
 import re
 from pathlib import Path
 
@@ -8,7 +9,10 @@ from logzero import logger
 
 from sync_version.loglevel import loglevel
 
-logzero.loglevel(loglevel(20))
+# set LOGLEVEL=10 (Windows) or export LOGLEVEL=10 (Linux) in ternimal to debug
+# logzero.loglevel(loglevel(20))
+
+logzero.loglevel(loglevel())
 logger.debug("debug on")
 
 
@@ -32,8 +36,11 @@ def fetch_info():
         with open("pyproject.toml", encoding="utf8") as fha:
             jdata = tomlkit.load(fha)
     except Exception as exc:
-        logger.exception(exc)
-        raise
+        logger.error(exc)
+        logger.info(
+            "You need to run sync-version in the directory where pproject.toml and/or package.json is placed"
+        )
+        raise SystemExit(1)
 
     try:
         name = jdata.get("tool").get("poetry").get("name")  # type: ignore
@@ -43,7 +50,18 @@ def fetch_info():
     try:
         version = jdata.get("tool").get("poetry").get("version")  # type: ignore
     except Exception:
-        version = ""
+        # check package.json
+        logger.warning(
+            "No info in pyproject.toml on version available, ... checking package.json "
+        )
+        try:
+            jdata = json.load(open("package.json", encoding="utf8"))
+            version = jdata.get("version")
+        except Exception:
+            logger.warning(
+                "No info in package.json on version available, either... setting tp ''(empty) "
+            )
+            version = ""
 
     return name, convert(version)
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sync-version"
-version = "0.1.4"
+version = "0.1.5a0"
 description = "Sync __version__ in __init__.py with version in pyproject.toml"
 authors = ["ffreemt"]
 license = "MIT"
