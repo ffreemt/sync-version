@@ -17,5 +17,6 @@
         "pflake8": "pflake8 tests sync_version",
         "pep257": "pep257 tests sync_version",
         "final": "run-s docstyle black flake8 pytest"
-    }
+    },
+    "version": "0.1.0a0"
 }
