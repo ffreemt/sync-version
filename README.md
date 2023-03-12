@@ -11,6 +11,9 @@ pip install sync-version
 # or pip install git+https://github.com/ffreemt/sync-version
 # poetry add git+https://github.com/ffreemt/sync-version
 # git clone https://github.com/ffreemt/sync-version && cd sync-version
+
+# install prereleases
+pip install --pre sync-version -U
 ```
 
 ## Use it
