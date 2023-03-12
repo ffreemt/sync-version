@@ -40,5 +40,15 @@ sync-version  # update __version__ in module_name/__init__.py
 git add . && git commit -m "Update ..."
 git push
 
+# check Actions
+gh run list -L 1
+
+# publish pypi
 poetry build  # or pdm build
 poetry publish  # or pdm publish --no-build or twine upload --skip=existing dist\*
+
+# release in github
+git tag
+git push --tags
+gh release create v0.1.0a2 --generate-notes
+```
